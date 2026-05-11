@@ -12,7 +12,7 @@ database_id = "f0da89ef-8609-4db3-afec-5c877752a700"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "bac3e357d5424f13805b612f5e2a8a4e"
 
 [vars]
 APP_NAME = "DriveOps Cloud"
