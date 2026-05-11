@@ -1,0 +1,22 @@
+{
+  "name": "driveops-cloudflare-gateway-d1-kv-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "DriveOps Cloud sales demo: Cloudflare Worker Gateway + D1 + KV + static web UI",
+  "scripts": {
+    "dev": "wrangler dev worker/src/index.js --local --persist-to .wrangler/state",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute driveops_demo_db --local --file=./sql/schema.sql",
+    "db:seed": "wrangler d1 execute driveops_demo_db --local --file=./sql/seed.sql",
+    "db:reset": "npm run db:init && npm run db:seed",
+    "cf:db:init": "wrangler d1 execute driveops_demo_db --remote --file=./sql/schema.sql",
+    "cf:db:seed": "wrangler d1 execute driveops_demo_db --remote --file=./sql/seed.sql",
+    "cf:d1:create": "wrangler d1 create driveops_demo_db",
+    "cf:kv:create": "wrangler kv namespace create DRIVEOPS_KV",
+    "check": "node --check worker/src/index.js && node --check public/app.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
