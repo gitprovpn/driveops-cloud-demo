@@ -284,6 +284,28 @@ function bind(){
   });
 }
 
+
+/* Expose module-scoped functions for inline onclick handlers.
+   Because index.html loads app.js with type="module", top-level const/function
+   are not automatically attached to window. Inline onclick="..." needs these. */
+window.state = state;
+window.app = app;
+window.renderAI = renderAI;
+window.askAI = askAI;
+window.DriveOpsAI = {
+  open() {
+    state.aiOpen = true;
+    renderAI();
+  },
+  close() {
+    state.aiOpen = false;
+    renderAI();
+  },
+  ask(question) {
+    askAI(question);
+  }
+};
+
 (async function init(){
   try{
     const me = await api("/api/me");
